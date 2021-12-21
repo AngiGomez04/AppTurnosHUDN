@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "suturno-eb234": {
+      "hosting": {
+        "AppTurnosHUDN": [
+          "suturno-eb234"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "suturno-eb234"
+  }
+}
