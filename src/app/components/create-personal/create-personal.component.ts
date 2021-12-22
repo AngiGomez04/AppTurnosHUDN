@@ -27,15 +27,14 @@ export class CreatePersonalComponent implements OnInit {
       profesion: ['', Validators.required],
       salario: ['', Validators.required]
     }
-     
-
-    )
+)
    }
 
   ngOnInit(): void {
 
    
   }
+
 
   agregarPersonal(){
     this.submitted = true;
@@ -55,7 +54,7 @@ export class CreatePersonalComponent implements OnInit {
       fechaActualizacion: new Date()
 
     }
-
+    
     this.loading=true;
     this._personalService.agregarPersonal(personal).then(() =>{
      this.toastr.success('Empleado registrado con exito', 'Registro exitoso');
@@ -66,5 +65,10 @@ export class CreatePersonalComponent implements OnInit {
       this.loading =false;
     })
     
+    
   }
+
+  
 }
+
+

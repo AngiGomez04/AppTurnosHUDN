@@ -9,26 +9,55 @@
                             <span class="visually-hidden">Loading...</span>
                         </div>
                     </h3>
-                        <span *ngIf = "submitted && createPersonal.invalid">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
-                        <form class="mt-4" [formGroup] = "createPersonal" (ngSubmit)= "agregarPersonal()">
+                        <!-- <span *ngIf = "submitted && createPersonal.invalid">TODOS LOS CAMPOS SON OBLIGATORIOS</span> -->
+                        <form class="mt-4 " [formGroup] = "createPersonal" (ngSubmit)= "agregarPersonal()">
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class ="form-control" formControlName = "nombres" placeholder="Nombres" >
+                                    <input type="text" class ="form-control" 
+                                    [ngClass]= "
+            (createPersonal.get('nombres')?.touched ||
+              createPersonal.get('nombres')?.dirty) &&
+            createPersonal.get('nombres')?.hasError('required')
+              ? 'is-invalid'
+              : '' || createPersonal.get('nombres')?.hasError('minlength')
+              ? 'is-invalid'
+              : '' ||
+                ((createPersonal.get('nombres')?.touched ||
+                  createPersonal.get('nombres')?.dirty) &&
+                  !createPersonal.get('nombres')?.invalid)
+              ? 'is-valid'
+              : ''
+          "
+                                    formControlName = "nombres" placeholder="Nombres"                                    
+                                    >
                                 </div>
+                                <div class="invalid-feedback">
+                                    {{
+                                      createPersonal.get("nombres).hasError("required")
+                                        ? " Name is required"
+                                        : ""
+                                    }}
+                                    {{
+                                      createPersonal.get("nombres").hasError("minlength")
+                                        ? " 5 letters required"
+                                        : ""
+                                    }}
+                                  </div>
                                 <div class="col">
-                                    <input type="text" class ="form-control" formControlName = "apellidos" placeholder="Apellidos">
+                                    <input type="text" class ="form-control" formControlName = "apellidos" placeholder="Apellidos" required>
                                 </div>
                             </div>
-                            <input type="text" class ="form-control  mt-3" formControlName = "identificacion" placeholder="Identificación">
-                            <input type="text" class ="form-control  mt-3" formControlName = "profesion" placeholder="Profesión">
-                            <input type="text" class ="form-control  mt-3" formControlName = "salario" placeholder="Salario">
+                            <input type="number" class ="form-control  mt-3" formControlName = "identificacion" placeholder="Identificación" required>
+                            <input type="text" class ="form-control  mt-3" formControlName = "profesion" placeholder="Profesión" required>
+                            <input type="number" class ="form-control  mt-3" formControlName = "salario" placeholder="Salario" required>
                                     
                                     <div class="mt-3">
                                         <button class="btn btn-secondary btn-lg" style="margin-right: 3px">Volver</button>
-                                        <button class="btn btn-dark btn-lg" style="margin-right: 3px">Registrar</button>
+                                        <button class="btn btn-dark btn-lg" style="margin-right: 3px" [disabled]="createPersonal.invalid">Registrar</button>
                                     </div>
                         </form>
                 </div>
             </div>
         </div>
     </div>
+
