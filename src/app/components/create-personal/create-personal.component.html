@@ -4,7 +4,7 @@
     <div class="card text-center bg-light area">
       <div class="card-body ">
         <h3 >
-          {{titulo}}
+        Agregar persona
           <div  *ngIf="loading" class="bd-highlight float-end" role="status">
             <span class="visually-hidden">Loading...</span>
 
@@ -13,9 +13,42 @@
         </h3>
         <!-- <span *ngIf = "submitted && createPersonal.invalid">TODOS LOS CAMPOS SON OBLIGATORIOS</span> -->
         <form class="mt-4 " [formGroup]="createPersonal" (ngSubmit)="agregarPersonal()">
-          <div class="row mt-3">
-            <div class="col ">
+          
+              <div class="row mt-3">
+                <div class="col">
+                  <div class="input-group " >
+                    <span class="input-group-text">
+                      <i class="fas fa-id-card"></i>
+                    </span>
+                                      <input type="number" class="form-control " [ngClass]="
+                                        (createPersonal.get('identificacion')?.touched ||
+                                          createPersonal.get('identificacion')?.dirty) &&
+                                        createPersonal.get('identificacion')?.hasError('required')
+                                          ? 'is-invalid'
+                                          : '' ||
+                                            ((createPersonal.get('identificacion')?.touched ||
+                                              createPersonal.get('identificacion')?.dirty) &&
+                                              !createPersonal.get('identificacion')?.invalid)
+                                          ? 'is-valid'
+                                          : ''
+                                      " formControlName="identificacion" placeholder="Identificación">
+    
+                                      <div class="invalid-feedback">
+                                        Campo obligatorio
+                                      </div>
+    
+                  </div>
+                </div>
+                <div class="col">
 
+                </div>
+                
+              </div>
+           
+    
+
+          <div class="row mt-3">
+            <div class="col">
               <div class="input-group borde">
                 <span class="input-group-text">
                   <i class="fas fa-user-edit"></i>
@@ -47,14 +80,14 @@
                 
               </div>
             </div>
-                  <div class="col">
-                   
-                  </div>
-           
-           </div>
+                  
+          </div>
+
 
            <div class="row mt-3">
-            <div class="col">
+         <div class="col">
+
+           
               <div class="input-group ">
                 <span class="input-group-text">
                   <i class="fas fa-user-edit"></i>
@@ -85,33 +118,7 @@
           </div>
       
       
-          <div class="row mt-3">
-            <div class="col">
-              <div class="input-group " >
-                <span class="input-group-text">
-                  <i class="fas fa-id-card"></i>
-                </span>
-                                  <input type="number" class="form-control " [ngClass]="
-                                    (createPersonal.get('identificacion')?.touched ||
-                                      createPersonal.get('identificacion')?.dirty) &&
-                                    createPersonal.get('identificacion')?.hasError('required')
-                                      ? 'is-invalid'
-                                      : '' ||
-                                        ((createPersonal.get('identificacion')?.touched ||
-                                          createPersonal.get('identificacion')?.dirty) &&
-                                          !createPersonal.get('identificacion')?.invalid)
-                                      ? 'is-valid'
-                                      : ''
-                                  " formControlName="identificacion" placeholder="Identificación">
-
-                                  <div class="invalid-feedback">
-                                    Campo obligatorio
-                                  </div>
-
-              </div>
-            </div>
-            
-          </div>
+          
 
           <div class="row mt-3">
                 <div class="col">
@@ -141,37 +148,105 @@
                     <div class="invalid-feedback">
                       Campo obligatorio
                     </div>
-                  </div>
-                </div>
 
+                  
+                  </div> 
+                </div> 
+
+                  <div class="col ">
+
+                    <div class="input-group ">
+                        <span class="input-group-text">
+                          <i class="fas fa-file-alt"></i>
+                        </span>
+        
+                        <input type="text" class="form-control "
+                        [ngClass]="
+                                        (createPersonal.get('contrato')?.touched ||
+                                          createPersonal.get('contrato')?.dirty) &&
+                                        createPersonal.get('contrato')?.hasError('required')
+                                          ? 'is-invalid'
+                                          : '' ||
+                                            ((createPersonal.get('contrato')?.touched ||
+                                              createPersonal.get('contrato')?.dirty) &&
+                                              !createPersonal.get('contrato')?.invalid)
+                                          ? 'is-valid'
+                                          : ''
+                                          "
+                        formControlName="contrato" placeholder="Tipo contrato" required>
+                        <div class="invalid-feedback">
+                          Campo obligatorio
+                        </div>
+                   
+                      </div>
+                  
+               </div>
+              </div>
+               
+              
+             
+     
+   
+
+
+              <div class="row mt-3">
               <div class="col">
 
                 <div class="input-group ">
                     <span class="input-group-text">
-                      <i class="fas fa-money-check-alt"></i>
+                      <i class="fas fa-user-md"></i>
                     </span>
-
-                    <input type="number" class="form-control "
+                    <input type="text" class="form-control "
                     [ngClass]="
-                                    (createPersonal.get('salario')?.touched ||
-                                      createPersonal.get('salario')?.dirty) &&
-                                    createPersonal.get('salario')?.hasError('required')
+                                    (createPersonal.get('servicio')?.touched ||
+                                      createPersonal.get('servicio')?.dirty) &&
+                                    createPersonal.get('servicio')?.hasError('required')
                                       ? 'is-invalid'
                                       : '' ||
-                                        ((createPersonal.get('salario')?.touched ||
-                                          createPersonal.get('salario')?.dirty) &&
-                                          !createPersonal.get('salario')?.invalid)
+                                        ((createPersonal.get('servicio')?.touched ||
+                                          createPersonal.get('servicio')?.dirty) &&
+                                          !createPersonal.get('servicio')?.invalid)
                                       ? 'is-valid'
                                       : ''
                                       "
-                    formControlName="salario" placeholder="Salario" required>
-                    <div class="invalid-feedback">
-                      Campo obligatorio
-                    </div>
+                    formControlName="servicio" placeholder="Servicio" required>
+
+                          
+                          <div class="invalid-feedback">
+                            Campo obligatorio
+                          </div>
                
                   </div>
               </div>
+          
+          <div class="col ">
+
+            <div class="input-group ">
+                <span class="input-group-text">
+                  <i class="fas fa-money-check-alt"></i>
+                </span>
+
+                <input type="number" class="form-control "
+                          [ngClass]="
+                                          (createPersonal.get('salario')?.touched ||
+                                            createPersonal.get('salario')?.dirty) &&
+                                          createPersonal.get('salario')?.hasError('required')
+                                            ? 'is-invalid'
+                                            : '' ||
+                                              ((createPersonal.get('salario')?.touched ||
+                                                createPersonal.get('salario')?.dirty) &&
+                                                !createPersonal.get('salario')?.invalid)
+                                            ? 'is-valid'
+                                            : ''
+                                            "
+                          formControlName="salario" placeholder="Salario" required>
+                <div class="invalid-feedback">
+                  Campo obligatorio
+                </div>
+           
+              </div>
           </div>
+        </div>
 
           <div class="mt-3">
             <button routerLink="/dashboard" class="btn btn-secondary btn-lg" style="margin-right: 3px"> <i class="fas fa-reply"></i>Volver</button>

@@ -14,8 +14,12 @@
                     <th scope="col">Identificación</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">Nombres</th>
-                    <th scope="col">profesion</th>
+                    <th scope="col">profesion</th>  
+                    <th scope="col">contrato</th>
+                    <th scope="col">Servicio</th>
+                    
                     <th scope="col">Salario</th>
+                   
                     <th scope="col"></th>
                   
                   </tr>
@@ -27,7 +31,11 @@
                     <td>{{persona.apellidos}}</td>
                     <td>{{persona.nombres}}</td>
                     <td>{{persona.profesion}}</td>
+                    <td>{{persona.contrato}}</td>
+                    <td>{{persona.servicio}}</td> 
                     <td>{{persona.salario | currency}}</td>
+                   
+
 
                     <td><i class="fas fa-edit fa-lg text-info" style="margin-right: 2px" [routerLink]="['/editEmpleado/',persona.id]"></i>
                     <i (click)="eliminarEmpleado(persona.id)" class="fas fa-trash-alt fa-lg text-danger"></i></td>

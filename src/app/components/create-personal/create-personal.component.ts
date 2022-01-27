@@ -24,11 +24,14 @@ export class CreatePersonalComponent implements OnInit {
              private toastr: ToastrService,
              private aRoute: ActivatedRoute) {
     this.createPersonal = this.fb.group({
+      identificacion: ['', Validators.required],
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
-      identificacion: ['', Validators.required],
       profesion: ['', Validators.required],
+      contrato: ['', Validators.required],
+      servicio: ['', Validators.required],
       salario: ['', Validators.required]
+     
     }
 )
 
@@ -44,7 +47,7 @@ export class CreatePersonalComponent implements OnInit {
 
   agregarPersonal(){
     this.submitted = true;
-
+    
     if(this.createPersonal.invalid)
     {
       return;
@@ -52,6 +55,7 @@ export class CreatePersonalComponent implements OnInit {
 
     if(this.id === null)
     {
+      this. titulo;
       this.agregarEmpleado();
     }else{
       this.editarEmpleado(this.id);
@@ -61,12 +65,16 @@ export class CreatePersonalComponent implements OnInit {
 
   agregarEmpleado()
   {
+    
     const personal: any ={
+      identificacion: this.createPersonal.value.identificacion,
       nombres: this.createPersonal.value.nombres,
       apellidos: this.createPersonal.value.apellidos,
-      identificacion: this.createPersonal.value.identificacion,
       profesion: this.createPersonal.value.profesion,
+      contrato: this.createPersonal.value.contrato,
+      servicio: this.createPersonal.value.servicio,
       salario: this.createPersonal.value.salario,
+      
       fechaCreacion: new Date(),
       fechaActualizacion: new Date()
 
@@ -88,10 +96,12 @@ export class CreatePersonalComponent implements OnInit {
   editarEmpleado(id: string){
 
     const personal: any ={
+      identificacion: this.createPersonal.value.identificacion,
       nombres: this.createPersonal.value.nombres,
       apellidos: this.createPersonal.value.apellidos,
-      identificacion: this.createPersonal.value.identificacion,
       profesion: this.createPersonal.value.profesion,
+      contrato: this.createPersonal.value.contrato,
+      servicio: this.createPersonal.value.servicio,
       salario: this.createPersonal.value.salario,
       fechaActualizacion: new Date()
 
@@ -118,11 +128,15 @@ export class CreatePersonalComponent implements OnInit {
           this.loading= false;
           console.log(data.payload.data()['nombres']);
           this.createPersonal.setValue({
+            identificacion: data.payload.data()['identificacion'],
             nombres: data.payload.data()['nombres'],
             apellidos: data.payload.data()['apellidos'],
-            identificacion: data.payload.data()['identificacion'],
+            contrato: data.payload.data()['contrato'],
+            servicio: data.payload.data()['servicio'],
             profesion: data.payload.data()['profesion'],
-            salario: data.payload.data()['salario']
+            salario: data.payload.data()['salario'],
+            
+
           })
         });
     }
