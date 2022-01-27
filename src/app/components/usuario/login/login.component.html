@@ -1,0 +1,84 @@
+<div class="container mt-5">
+    <div class="row mt-4">
+        <div class="col-lg-4 offset-lg-4">
+            <div class="card text-center main-section w-0 h-0" >
+                <div class="card-body w-115 bg user-img"  style=" width : 20rem">
+                  
+                  <img src="./assets/user.png" />
+                <div class="col-lg">
+
+                </div>
+                    <h2 class="text-center titulo mb-4 mt-3">Inicio de sesión
+                        <div *ngIf="loading" class="p-2 bd-highlight float-center">
+                            <app-spinner>
+                      
+                            </app-spinner>
+                          </div>
+                    </h2>
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="mb-3">
+                          <div class="input-group input-group-lg">
+                        <span class="input-group-text">
+                          <i class="fas fa-user-circle "></i>
+                        </span>
+
+                        
+                            <input type="text"  
+                            [ngClass]="(loginForm.get('usuario')?.touched) &&
+                          loginForm.get('usuario')?.hasError('required') || (loginForm.get('usuario')?.hasError('email'))
+                            ? 'is-invalid'
+                            : '' ||
+                              ((loginForm.get('usuario')?.touched &&
+                                !loginForm.get('usuario')?.invalid))
+                            ? 'is-valid'
+                            : ''
+                           "
+                           formControlName ="usuario" class ='form-control' placeholder="Correo electrónico"> 
+                           <div class="invalid-feedback" Style="margin-left: -85px">
+                            {{(loginForm.get('usuario'))?.touched ? "Campo obligatorio" : ""}}
+
+                           </div>
+                          </div>
+                        </div>
+                       
+                        <div class="mb-3 ">
+                          <div class="input-group input-group-lg">
+                            <span class="input-group-text">
+                              <i class="fas fa-key "></i>
+                            </span>
+                              <input type="password"  
+                            [ngClass]="(loginForm.get('password')?.touched) &&
+                          loginForm.get('password')?.hasError('required') 
+                            ? 'is-invalid'
+                            : '' ||
+                              ((loginForm.get('password')?.touched &&
+                                !loginForm.get('password')?.invalid))
+                            ? 'is-valid'
+                            : ''
+                           "
+
+                            formControlName ="password" class ='form-control' placeholder="Contraseña" >
+                           
+                            <div class="invalid-feedback text-left" Style="margin-left: -85px">
+                                {{(loginForm.get('password'))?.touched ? "Campo obligatorio" : ""}}
+    
+                               </div>
+
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-personalizado btn-lg float text-white" [disabled]="loginForm.invalid">
+                            <i class="fas fa-sign-in-alt " style="margin-right: 2px"></i> Ingresar </button>
+                    </form>
+                        <br>
+                        
+                          <div class="link-secondary">
+                            <a routerLink="/usuario/register">Registrarse</a>
+                            <br>
+                            <a routerLink="/usuario/recuperar-password">Recuperar Contraseña</a>
+                         
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

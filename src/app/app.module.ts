@@ -8,7 +8,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SharedModule } from './components/shared/shared.module';
+import { DashboardModule} from './components/dashboard/dashboard.module';
 //componentes
 
 import { AppComponent } from './app.component';
@@ -28,22 +29,29 @@ import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ListPersonalComponent,
     CreatePersonalComponent,
     NavbarComponent
+
   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DashboardModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    SharedModule,
+    
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),

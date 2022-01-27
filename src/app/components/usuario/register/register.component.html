@@ -1,0 +1,123 @@
+
+<div class="container mt-5">
+ 
+  
+ 
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+            <div class="card text-center main-section">
+               
+                  
+                  <div class="card-body w-115 bg user-img"  style=" width : 20rem">
+                  
+                    <img src="./assets/user.png" />
+                  <div class="col-lg">
+  
+                  </div>
+                    <h2 class="text-center titulo mb-4 mt-3 ">Registro usuario
+                     
+                        <div *ngIf="loading" class="p-2 bd-highlight float-end">
+                          <app-spinner>
+                    
+                          </app-spinner>
+                        </div>
+                        
+                     
+                    </h2>
+                  
+                   
+                   
+                    <form  [formGroup]="registerForm" (ngSubmit)="register()">
+
+                        <div class="mb-3">
+                          <div class="input-group input-group-lg">
+                            <span class="input-group-text">
+                              <i class="fas fa-user-circle "></i>
+                            </span>
+                            
+                            <input type="text" 
+                            
+                            [ngClass]="(registerForm.get('usuario')?.touched) &&
+                          registerForm.get('usuario')?.hasError('required') || (registerForm.get('usuario')?.hasError('email'))
+                            ? 'is-invalid'
+                            : '' ||
+                              ((registerForm.get('usuario')?.touched &&
+                                !registerForm.get('usuario')?.invalid))
+                            ? 'is-valid'
+                            : ''
+                           "
+                            formControlName ="usuario" class ='form-control' placeholder="Correo electrónico" >
+                            <div class="invalid-feedback" Style="margin-left: -110px">
+                                {{(registerForm.get('usuario'))?.touched ? "Es obligatorio" : ""}}
+    
+                               </div>
+
+                           </div>
+                        </div>
+                       
+                        <div class="mb-3">
+
+                          <div class="input-group input-group-lg">
+                            <span class="input-group-text">
+                              <i class="fas fa-key "></i>
+                            </span>
+                            <input type="password" 
+
+                            [ngClass]="(registerForm.get('password')?.touched) &&
+                          registerForm.get('password')?.hasError('required') 
+                            ? 'is-invalid'
+                            : '' || registerForm.get('password')?.hasError('minlength')
+                            ? 'is-invalid'
+                            : '' ||
+                              ((registerForm.get('password')?.touched &&
+                                !registerForm.get('password')?.invalid))
+                            ? 'is-valid'
+                            : ''
+                           "
+
+                            formControlName ="password" class ='form-control' placeholder="Contraseña">
+                           
+                            <div class="invalid-feedback" Style="margin-left: -95px">
+                                {{(registerForm.get('password'))?.touched ? "Mínimo 8 caracteres" : ""}}
+    
+                               </div>
+                               </div>
+                        </div>
+
+                        <div class="mb-3">
+
+                          <div class="input-group input-group-lg">
+                            <span class="input-group-text">
+                              <i class="fas fa-key "></i>
+                            </span>
+
+                            <input type="password" 
+                            
+                            [ngClass]="(registerForm.get('repetirPassword')?.touched) &&
+                          registerForm.get('repetirPassword')?.hasError('required') 
+                            ? 'is-invalid'
+                            : '' || registerForm.hasError('notSame')
+                            ? 'is-invalid'
+                            : '' ||
+                              ((registerForm.get('repetirPassword')?.touched &&
+                                !registerForm.get('repetirPassword')?.invalid))
+                            ? 'is-valid'
+                            : ''
+                           "
+                            formControlName ="repetirPassword" class ='form-control' placeholder="Confirmar contraseña">
+                            <div class="invalid-feedback" Style="margin-left: -95px">
+                                {{(registerForm.get('repetirPassword'))?.touched ? "Contraseñas distintas" : ""}}
+    
+                               </div>
+                        </div>
+              </div>
+                        <button routerLink="/usuario" class="btn btn-secondary btn-lg-2 float-start text-white"> <i class="fas fa-reply"></i> Volver</button>
+                        <button type="submit" class="btn btn-personalizado btn-lg-2 float-end text-white" 
+                        [disabled]="registerForm.invalid"> <i class="fas fa-sign-in-alt "></i> Registrar</button>
+                    </form>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

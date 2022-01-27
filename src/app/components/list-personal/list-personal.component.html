@@ -1,48 +1,43 @@
 <div class="container mt-4">
-    <div class="card">
-        <div class="card-body">
-            <span class="h3">Listado de personal</span>
-            <button class="btn btn-dark btn lg float-end" routerLink="/create-personal">Agregar Persona</button>
-            <table class="table table-bordered border-primary mt-5">
-                <thead>
+  <div class="row mt-3">
+    <div class="col-lg-8 offset-2">
+    <div class="card pers">
+        <div class="card-body  titulo">
+            <span class="h3 mb-3">Listado de personal</span>
+            <button class="btn btn-dark btn-lg float-end" routerLink="/dashboard/create-personal"> <i class="fas fa-user-plus"></i> Agregar Persona</button>
+           <h5 style="margin-top: 30px" *ngIf="empleados.length ==0"> No hay registros para mostrar</h5>
+            <table *ngIf="empleados.length >0" class="table table-striped mt-5">
+              
+                <thead class="table-dark">
                   <tr>
+                   
                     <th scope="col">Identificación</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">Nombres</th>
-                    <th scope="col">Cargo</th>
+                    <th scope="col">profesion</th>
+                    <th scope="col">Salario</th>
+                    <th scope="col"></th>
+                  
                   </tr>
                 </thead>
+            
                 <tbody>
-                  <tr>
-                    <th scope="row">1086019835</th>
-                    <td>Gómez Guerrero</td>
-                    <td>Angi Yuliana</td>
-                    <td>Médica</td>
-                    <td><i class="fas fa-edit fa-lg text-info" style="margin-right: 2px"></i>
-                    <i class="fas fa-trash-alt fa-lg text-danger"></i></td>
+                  <tr *ngFor="let persona of empleados">
+                    <th scope="row">{{persona.identificacion}}</th>
+                    <td>{{persona.apellidos}}</td>
+                    <td>{{persona.nombres}}</td>
+                    <td>{{persona.profesion}}</td>
+                    <td>{{persona.salario | currency}}</td>
+
+                    <td><i class="fas fa-edit fa-lg text-info" style="margin-right: 2px" [routerLink]="['/editEmpleado/',persona.id]"></i>
+                    <i (click)="eliminarEmpleado(persona.id)" class="fas fa-trash-alt fa-lg text-danger"></i></td>
                     
-                  </tr>
-                  <tr>
-                    <th scope="row">1087123467</th>
-                    <td>Bernal Pantoja</td>
-                    <td>Jesus camilo</td>
-                    <td>Enfermero</td>
-                    <td><i class="fas fa-edit fa-lg text-info" style="margin-right: 2px"></i>
-                    <i class="fas fa-trash-alt fa-lg text-danger"></i></td>
-                    
-                  </tr>
-                  <tr>
-                    <th scope="row">1234567899</th>
-                    <!--<td colspan="2">Larry the Bird</td>-->
-                    <td>Narvaez Fajardo</td>
-                    <td>Alejandro</td>
-                    <td>Camillero</td>
-                    <td><i class="fas fa-edit fa-lg text-info " style="margin-right: 2px"></i>
-                    <i class="fas fa-trash-alt fa-lg text-danger"></i></td>
+                 
                   </tr>
                 </tbody>
               </table>
-              
+            </div>
+          </div>
         </div>
     </div>
 </div>
